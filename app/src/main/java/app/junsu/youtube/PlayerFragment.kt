@@ -14,9 +14,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
-
         binding = FragmentPlayerBinding.bind(view)
-
         binding.motionLayoutPlayer.setTransitionListener(
             object : MotionLayout.TransitionListener {
                 override fun onTransitionStarted(
