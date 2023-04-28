@@ -8,5 +8,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        supportFragmentManager.beginTransaction().replace(
+            R.id.container_main,
+            PlayerFragment(),
+        ).commit()
     }
 }
