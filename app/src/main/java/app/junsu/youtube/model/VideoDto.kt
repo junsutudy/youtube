@@ -1,5 +1,5 @@
 package app.junsu.youtube.model
 
-data class VideosWrapper(
+data class VideoDto(
     val videos: List<Video>,
 )
