@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="app.junsu.youtube.MainActivity">
+    tools:context="app.junsu.youtube.ui.MainActivity">
     <item
         android:id="@+id/home"
         android:icon="@drawable/baseline_home_24"

@@ -1,9 +1,10 @@
-package app.junsu.youtube
+package app.junsu.youtube.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
+import app.junsu.youtube.R
 import app.junsu.youtube.databinding.FragmentPlayerBinding
 import kotlin.math.abs
 
