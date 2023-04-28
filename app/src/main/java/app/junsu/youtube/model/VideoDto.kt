@@ -1,5 +1,7 @@
 package app.junsu.youtube.model
 
+import com.google.gson.annotations.SerializedName
+
 data class VideoDto(
-    val videos: List<Video>,
+    @SerializedName("videos") val videos: List<Video>,
 )

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     private fun getVideos() {
         println("HELLOOO")
         val retrofit = Retrofit.Builder().baseUrl(
-            "https://run.mocky.io/",
+            "https://run.mocky.io",
         ).addConverterFactory(
             GsonConverterFactory.create(),
         ).build()
@@ -42,8 +42,11 @@ class MainActivity : AppCompatActivity() {
                         call: Call<VideoDto>,
                         response: Response<VideoDto>,
                     ) {
-                        if (response.isSuccessful.not()) Log.e("CALL", "FAILED").also { return }
-                        Log.d("RESPONSE", it.toString())
+                        if (response.isSuccessful.not()) {
+                            Log.e("CALL", "FAILED")
+                            return
+                        }
+                        Log.d("RESPONSE", response.body().toString())
                     }
 
                     override fun onFailure(
