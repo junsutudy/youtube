@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_player_scene">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/player_container_player"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:background="@color/material_dynamic_neutral50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/player_view_player"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/player_container_player"
+        app:layout_constraintStart_toStartOf="@id/player_container_player"
+        app:layout_constraintTop_toTopOf="@id/player_container_player" />
+
+    <TextView
+        android:id="@+id/tv_player_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="12dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="@id/player_container_player"
+        app:layout_constraintEnd_toStartOf="@id/btn_player_controller"
+        app:layout_constraintStart_toEndOf="@id/player_view_player"
+        app:layout_constraintTop_toTopOf="@id/player_container_player" />
+
+    <ImageButton
+        android:id="@+id/btn_player_controller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/player_container_player"
+        app:layout_constraintEnd_toEndOf="@+id/player_container_player"
+        app:layout_constraintTop_toTopOf="@+id/player_container_player" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_player"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/player_container_player" />
+</androidx.constraintlayout.motion.widget.MotionLayout>
