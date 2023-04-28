@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.recyclerview.widget.RecyclerView
 import app.junsu.youtube.R
 import app.junsu.youtube.data.VideoService
 import app.junsu.youtube.model.VideoDto
@@ -14,6 +15,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var videoAdapter: VideoAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
@@ -24,11 +27,16 @@ class MainActivity : AppCompatActivity() {
             PlayerFragment(),
         ).commit()
 
+        videoAdapter = VideoAdapter()
+
+        findViewById<RecyclerView>(R.id.rv_main).apply {
+            adapter = videoAdapter
+        }
+
         getVideos()
     }
 
     private fun getVideos() {
-        println("HELLOOO")
         val retrofit = Retrofit.Builder().baseUrl(
             "https://run.mocky.io",
         ).addConverterFactory(
@@ -46,7 +54,10 @@ class MainActivity : AppCompatActivity() {
                             Log.e("CALL", "FAILED")
                             return
                         }
-                        Log.d("RESPONSE", response.body().toString())
+
+                        response.body()?.let { videoDto ->
+                            videoAdapter.submitList(videoDto.videos)
+                        }
                     }
 
                     override fun onFailure(
