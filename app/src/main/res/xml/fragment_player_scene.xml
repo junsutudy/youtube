@@ -7,13 +7,16 @@
         motion:constraintSetStart="@id/start"
         motion:duration="1000">
         <KeyFrameSet></KeyFrameSet>
+        <OnSwipe
+            motion:touchAnchorId="@+id/player_view_player"
+            motion:touchAnchorSide="bottom" />
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
             android:id="@+id/rv_player"
             android:layout_width="0dp"
-            android:layout_height="0.1dp"
+            android:layout_height="0px"
             android:layout_marginBottom="80dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
