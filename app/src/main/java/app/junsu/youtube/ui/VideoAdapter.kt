@@ -30,6 +30,9 @@ class VideoAdapter : ListAdapter<Video, VideoAdapter.ViewHolder>(diffUtil) {
             ).into(
                 imgThumbnail,
             )
+
+            tvTitle.text = item.title
+            tvSubTitle.text = item.subtitle
         }
     }
 
