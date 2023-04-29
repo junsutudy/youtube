@@ -1,5 +1,6 @@
 package app.junsu.youtube.ui
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +10,11 @@ import app.junsu.youtube.R
 import app.junsu.youtube.data.VideoService
 import app.junsu.youtube.databinding.FragmentPlayerBinding
 import app.junsu.youtube.model.VideoDto
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +25,7 @@ import kotlin.math.abs
 class PlayerFragment : Fragment(R.layout.fragment_player) {
     private lateinit var binding: FragmentPlayerBinding
     private lateinit var videoAdapter: VideoAdapter
+    private lateinit var player: ExoPlayer
 
     override fun onViewCreated(
         view: View,
@@ -34,6 +41,8 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         initMotionLayoutEvent()
         initRecyclerView()
         getVideos()
+
+        initPlayer()
     }
 
     private fun initMotionLayoutEvent() {
@@ -119,10 +128,28 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         }
     }
 
+    private fun initPlayer() {
+        player = SimpleExoPlayer.Builder(requireContext()).build()
+
+        binding.playerViewPlayer.player = player
+    }
+
     fun play(
         url: String,
         title: String,
     ) {
+        val dataSourceFactory = DefaultDataSourceFactory(requireContext())
+        val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(
+            MediaItem.fromUri(
+                Uri.parse(url),
+            ),
+        )
+
+        player.run {
+            setMediaSource(mediaSource)
+            prepare()
+        }
+
         binding.motionLayoutPlayer.transitionToEnd()
         binding.tvPlayerTitle.text = title
     }
