@@ -148,9 +148,20 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         player.run {
             setMediaSource(mediaSource)
             prepare()
+            play()
         }
 
         binding.motionLayoutPlayer.transitionToEnd()
         binding.tvPlayerTitle.text = title
+    }
+
+    override fun onStop() {
+        super.onStop()
+        player.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        player.release()
     }
 }
