@@ -27,7 +27,14 @@ class MainActivity : AppCompatActivity() {
             PlayerFragment(),
         ).commit()
 
-        videoAdapter = VideoAdapter()
+        videoAdapter = VideoAdapter { url, title ->
+            supportFragmentManager.fragments.find { it is PlayerFragment }?.let {
+                (it as PlayerFragment).play(
+                    url = url,
+                    title = title
+                )
+            }
+        }
 
         findViewById<RecyclerView>(R.id.rv_main).apply {
             adapter = videoAdapter

@@ -27,7 +27,9 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPlayerBinding.bind(view)
 
-        videoAdapter = VideoAdapter()
+        videoAdapter = VideoAdapter(
+            callback = this::play,
+        )
 
         initMotionLayoutEvent()
         initRecyclerView()
@@ -115,5 +117,13 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         binding.rvPlayer.run {
             adapter = videoAdapter
         }
+    }
+
+    fun play(
+        url: String,
+        title: String,
+    ) {
+        binding.motionLayoutPlayer.transitionToEnd()
+        binding.tvPlayerTitle.text = title
     }
 }

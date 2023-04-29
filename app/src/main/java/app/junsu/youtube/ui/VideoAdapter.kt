@@ -12,7 +12,9 @@ import app.junsu.youtube.R
 import app.junsu.youtube.model.Video
 import com.bumptech.glide.Glide
 
-class VideoAdapter : ListAdapter<Video, VideoAdapter.ViewHolder>(diffUtil) {
+class VideoAdapter(
+    private val callback: (String, String) -> Unit,
+) : ListAdapter<Video, VideoAdapter.ViewHolder>(diffUtil) {
     inner class ViewHolder(
         private val view: View,
     ) : RecyclerView.ViewHolder(view) {
@@ -33,6 +35,10 @@ class VideoAdapter : ListAdapter<Video, VideoAdapter.ViewHolder>(diffUtil) {
 
             tvTitle.text = item.title
             tvSubTitle.text = item.subtitle
+
+            view.setOnClickListener {
+                callback(item.source, item.title)
+            }
         }
     }
 

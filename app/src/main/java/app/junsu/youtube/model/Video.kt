@@ -7,5 +7,5 @@ data class Video(
     @SerializedName("subtitle") val subtitle: String,
     @SerializedName("description") val description: String,
     @SerializedName("thumb") val thumb: String,
-    @SerializedName("sources") val sources: String,
+    @SerializedName("source") val source: String,
 )
