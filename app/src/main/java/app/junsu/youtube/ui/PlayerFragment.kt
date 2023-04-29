@@ -41,9 +41,10 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
 
         initMotionLayoutEvent()
         initRecyclerView()
-        getVideos()
-
         initPlayer()
+        initControlButton()
+
+        getVideos()
     }
 
     private fun initMotionLayoutEvent() {
@@ -147,6 +148,18 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         binding.playerViewPlayer.player = player
     }
 
+    private fun initControlButton() {
+        binding.btnPlayerController.setOnClickListener {
+            val player = if (this::player.isInitialized) this.player else return@setOnClickListener
+
+            if (player.isPlaying) {
+                player.pause()
+            } else {
+                player.play()
+            }
+        }
+    }
+
     fun play(
         url: String,
         title: String,
@@ -167,6 +180,7 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
         binding.motionLayoutPlayer.transitionToEnd()
         binding.tvPlayerTitle.text = title
     }
+
 
     override fun onStop() {
         super.onStop()
