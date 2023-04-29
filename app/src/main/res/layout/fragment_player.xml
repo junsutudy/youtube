@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<app.junsu.youtube.ui.VideoMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/motion_layout_player"
     android:layout_width="match_parent"
@@ -57,4 +57,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/player_container_player" />
-</androidx.constraintlayout.motion.widget.MotionLayout>
+</app.junsu.youtube.ui.VideoMotionLayout>
