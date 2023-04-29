@@ -12,6 +12,7 @@ import app.junsu.youtube.databinding.FragmentPlayerBinding
 import app.junsu.youtube.model.VideoDto
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -130,6 +131,18 @@ class PlayerFragment : Fragment(R.layout.fragment_player) {
 
     private fun initPlayer() {
         player = SimpleExoPlayer.Builder(requireContext()).build()
+        binding.let {
+            player.addListener(
+                object : Player.Listener {
+                    override fun onIsPlayingChanged(isPlaying: Boolean) {
+                        super.onIsPlayingChanged(isPlaying)
+                        it.btnPlayerController.setImageResource(
+                            if (isPlaying) R.drawable.baseline_pause_24 else R.drawable.baseline_play_arrow_24,
+                        )
+                    }
+                },
+            )
+        }
 
         binding.playerViewPlayer.player = player
     }
