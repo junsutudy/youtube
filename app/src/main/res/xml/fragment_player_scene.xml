@@ -15,6 +15,12 @@
                 android:alpha="0"
                 motion:framePosition="10"
                 motion:motionTarget="@+id/btn_player_controller" />
+            <KeyPosition
+                motion:framePosition="10"
+                motion:keyPositionType="deltaRelative"
+                motion:motionTarget="@+id/player_view_player"
+                motion:percentWidth="1"
+                motion:percentX="1" />
         </KeyFrameSet>
         <OnSwipe
             motion:touchAnchorId="@+id/player_view_player"
